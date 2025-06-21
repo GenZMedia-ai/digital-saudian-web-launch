@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -5,10 +6,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Phone, Mail, MapPin, Clock, Linkedin, Github } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
+
 const ContactSection = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const { t, isRTL } = useLanguage();
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,12 +21,13 @@ const ContactSection = () => {
     budget: '',
     message: ''
   });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours."
+      title: t('contact.toast.title'),
+      description: t('contact.toast.description')
     });
     setFormData({
       name: '',
@@ -35,20 +39,23 @@ const ContactSection = () => {
       message: ''
     });
   };
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
   };
-  return <section id="contact" className="py-24 bg-agency-dark text-white">
+
+  return (
+    <section id="contact" className="py-24 bg-agency-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-900">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 py-[20px]">
-            Let's Build Something Amazing Together
+            {t('contact.title')}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Ready to transform your digital presence? Get in touch and let's discuss your project.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -58,65 +65,108 @@ const ContactSection = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Name *</label>
-                  <Input required value={formData.name} onChange={e => handleInputChange('name', e.target.value)} placeholder="Your name" className="border-gray-700 text-white bg-slate-700" />
+                  <label className={`block text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                    {t('contact.form.name')} *
+                  </label>
+                  <Input 
+                    required 
+                    value={formData.name} 
+                    onChange={e => handleInputChange('name', e.target.value)} 
+                    placeholder={t('contact.form.name.placeholder')} 
+                    className="border-gray-700 text-white bg-slate-700" 
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Email *</label>
-                  <Input type="email" required value={formData.email} onChange={e => handleInputChange('email', e.target.value)} placeholder="your@email.com" className="border-gray-700 text-white bg-gray-700" />
+                  <label className={`block text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                    {t('contact.form.email')} *
+                  </label>
+                  <Input 
+                    type="email" 
+                    required 
+                    value={formData.email} 
+                    onChange={e => handleInputChange('email', e.target.value)} 
+                    placeholder={t('contact.form.email.placeholder')} 
+                    className="border-gray-700 text-white bg-gray-700" 
+                  />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Phone</label>
-                  <Input value={formData.phone} onChange={e => handleInputChange('phone', e.target.value)} placeholder="+1 (555) 123-4567" className="border-gray-700 text-white bg-gray-700" />
+                  <label className={`block text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                    {t('contact.form.phone')}
+                  </label>
+                  <Input 
+                    value={formData.phone} 
+                    onChange={e => handleInputChange('phone', e.target.value)} 
+                    placeholder={t('contact.form.phone.placeholder')} 
+                    className="border-gray-700 text-white bg-gray-700" 
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Company</label>
-                  <Input value={formData.company} onChange={e => handleInputChange('company', e.target.value)} placeholder="Your company" className="border-gray-700 text-white bg-gray-700" />
+                  <label className={`block text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                    {t('contact.form.company')}
+                  </label>
+                  <Input 
+                    value={formData.company} 
+                    onChange={e => handleInputChange('company', e.target.value)} 
+                    placeholder={t('contact.form.company.placeholder')} 
+                    className="border-gray-700 text-white bg-gray-700" 
+                  />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="">
-                  <label className="block text-sm font-medium mb-2">Project Type</label>
+                <div>
+                  <label className={`block text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                    {t('contact.form.project.type')}
+                  </label>
                   <Select onValueChange={value => handleInputChange('projectType', value)}>
                     <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
-                      <SelectValue placeholder="Select project type" />
+                      <SelectValue placeholder={t('contact.form.project.placeholder')} />
                     </SelectTrigger>
                     <SelectContent className="bg-gray-800 border-gray-700">
-                      <SelectItem value="web">Web Development</SelectItem>
-                      <SelectItem value="mobile">Mobile App</SelectItem>
-                      <SelectItem value="software">Custom Software</SelectItem>
-                      <SelectItem value="design">UI/UX Design</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
+                      <SelectItem value="web">{t('contact.form.project.web')}</SelectItem>
+                      <SelectItem value="mobile">{t('contact.form.project.mobile')}</SelectItem>
+                      <SelectItem value="software">{t('contact.form.project.software')}</SelectItem>
+                      <SelectItem value="design">{t('contact.form.project.design')}</SelectItem>
+                      <SelectItem value="other">{t('contact.form.project.other')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Budget Range</label>
+                  <label className={`block text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                    {t('contact.form.budget')}
+                  </label>
                   <Select onValueChange={value => handleInputChange('budget', value)}>
                     <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
-                      <SelectValue placeholder="Select budget range" />
+                      <SelectValue placeholder={t('contact.form.budget.placeholder')} />
                     </SelectTrigger>
                     <SelectContent className="bg-gray-800 border-gray-700">
-                      <SelectItem value="10k-25k">$10k - $25k</SelectItem>
-                      <SelectItem value="25k-50k">$25k - $50k</SelectItem>
-                      <SelectItem value="50k-100k">$50k - $100k</SelectItem>
-                      <SelectItem value="100k+">$100k+</SelectItem>
+                      <SelectItem value="10k-25k">{t('contact.form.budget.10k')}</SelectItem>
+                      <SelectItem value="25k-50k">{t('contact.form.budget.25k')}</SelectItem>
+                      <SelectItem value="50k-100k">{t('contact.form.budget.50k')}</SelectItem>
+                      <SelectItem value="100k+">{t('contact.form.budget.100k')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Message *</label>
-                <Textarea required value={formData.message} onChange={e => handleInputChange('message', e.target.value)} placeholder="Tell us about your project..." className="border-gray-700 text-white min-h-[120px] bg-gray-700" />
+                <label className={`block text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                  {t('contact.form.message')} *
+                </label>
+                <Textarea 
+                  required 
+                  value={formData.message} 
+                  onChange={e => handleInputChange('message', e.target.value)} 
+                  placeholder={t('contact.form.message.placeholder')} 
+                  className="border-gray-700 text-white min-h-[120px] bg-gray-700" 
+                />
               </div>
 
               <Button type="submit" size="lg" className="w-full bg-agency-blue hover:bg-blue-600 text-white py-4 text-lg font-semibold">
-                Send Message
+                {t('contact.form.submit')}
               </Button>
             </form>
           </div>
@@ -124,38 +174,38 @@ const ContactSection = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="bg-gray-900 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
+              <h3 className="text-2xl font-bold mb-6">{t('contact.info.title')}</h3>
               
               <div className="space-y-6">
                 <div className="flex items-center">
-                  <Phone className="w-6 h-6 text-agency-blue mr-4" />
+                  <Phone className={`w-6 h-6 text-agency-blue ${isRTL ? 'ml-4' : 'mr-4'}`} />
                   <div>
-                    <div className="font-semibold">Phone</div>
-                    <div className="text-gray-400">+1 (555) 123-4567</div>
+                    <div className="font-semibold">{t('contact.info.phone')}</div>
+                    <div className="text-gray-400">{t('contact.info.phone.number')}</div>
                   </div>
                 </div>
                 
                 <div className="flex items-center">
-                  <Mail className="w-6 h-6 text-agency-blue mr-4" />
+                  <Mail className={`w-6 h-6 text-agency-blue ${isRTL ? 'ml-4' : 'mr-4'}`} />
                   <div>
-                    <div className="font-semibold">Email</div>
-                    <div className="text-gray-400">hello@devagency.com</div>
+                    <div className="font-semibold">{t('contact.info.email')}</div>
+                    <div className="text-gray-400">{t('contact.info.email.address')}</div>
                   </div>
                 </div>
                 
                 <div className="flex items-center">
-                  <MapPin className="w-6 h-6 text-agency-blue mr-4" />
+                  <MapPin className={`w-6 h-6 text-agency-blue ${isRTL ? 'ml-4' : 'mr-4'}`} />
                   <div>
-                    <div className="font-semibold">Office</div>
-                    <div className="text-gray-400">Riyadh, Saudi Arabia</div>
+                    <div className="font-semibold">{t('contact.info.office')}</div>
+                    <div className="text-gray-400">{t('contact.info.office.address')}</div>
                   </div>
                 </div>
                 
                 <div className="flex items-center">
-                  <Clock className="w-6 h-6 text-agency-blue mr-4" />
+                  <Clock className={`w-6 h-6 text-agency-blue ${isRTL ? 'ml-4' : 'mr-4'}`} />
                   <div>
-                    <div className="font-semibold">Response Time</div>
-                    <div className="text-gray-400">We respond within 24 hours</div>
+                    <div className="font-semibold">{t('contact.info.response')}</div>
+                    <div className="text-gray-400">{t('contact.info.response.time')}</div>
                   </div>
                 </div>
               </div>
@@ -163,19 +213,19 @@ const ContactSection = () => {
 
             {/* Calendar Widget Placeholder */}
             <div className="bg-gray-900 rounded-2xl p-8">
-              <h3 className="text-xl font-bold mb-4">Schedule a Call</h3>
+              <h3 className="text-xl font-bold mb-4">{t('contact.schedule.title')}</h3>
               <p className="text-gray-400 mb-4">
-                Prefer to talk? Book a free 30-minute consultation call.
+                {t('contact.schedule.description')}
               </p>
               <Button className="w-full bg-green-600 hover:bg-green-700">
-                Book a Call
+                {t('contact.schedule.cta')}
               </Button>
             </div>
 
             {/* Social Links */}
             <div className="bg-gray-900 rounded-2xl p-8">
-              <h3 className="text-xl font-bold mb-4">Follow Us</h3>
-              <div className="flex space-x-4">
+              <h3 className="text-xl font-bold mb-4">{t('contact.social.title')}</h3>
+              <div className="flex space-x-4 rtl:space-x-reverse">
                 <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-agency-blue transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </a>
@@ -187,6 +237,8 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default ContactSection;
