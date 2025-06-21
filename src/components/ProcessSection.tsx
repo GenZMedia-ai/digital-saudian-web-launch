@@ -94,9 +94,12 @@ const ProcessSection = () => {
                   {step.timeframe}
                 </span>
                 {index < steps.length - 1 && (
-                  <div className={`absolute top-8 left-full w-full h-0.5 ${
-                    activeStep > index ? 'bg-agency-blue' : 'bg-gray-200'
-                  }`} style={{ width: 'calc(100vw / 4 - 4rem)' }}></div>
+                  <div 
+                    className={`absolute top-8 left-full w-full h-0.5 ${
+                      activeStep > index ? 'bg-agency-blue' : 'bg-gray-200'
+                    }`} 
+                    style={{ width: 'calc(100vw / 4 - 4rem)' }}
+                  ></div>
                 )}
               </div>
             ))}
