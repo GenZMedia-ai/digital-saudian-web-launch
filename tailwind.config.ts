@@ -63,13 +63,17 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				agency: {
-					dark: '#0f172a',
-					navy: '#1e293b',
-					blue: '#3b82f6',
-					light: '#f8fafc',
-					gray: '#64748b'
+				devora: {
+					navy: '#010534',
+					primary: '#2B40F5',
+					cyan: '#10BBEF',
+					light: '#E4E6F3'
 				}
+			},
+			fontFamily: {
+				'hanson': ['Oswald', 'Arial Black', 'sans-serif'],
+				'roboto': ['Roboto', 'system-ui', 'sans-serif'],
+				'sans': ['Roboto', 'system-ui', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

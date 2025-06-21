@@ -33,10 +33,10 @@ const ProblemSolutionSection = () => {
     <section id="about" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-agency-navy mb-6">
+          <h2 className="text-4xl md:text-5xl font-hanson font-bold text-devora-navy mb-6">
             We Understand Your Challenges
           </h2>
-          <p className="text-xl text-agency-gray max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-roboto">
             Every business faces unique digital challenges. We've helped hundreds of companies overcome theirs.
           </p>
         </div>
@@ -49,16 +49,16 @@ const ProblemSolutionSection = () => {
                   <item.icon className="w-8 h-8 text-red-600" />
                 </div>
                 
-                <h3 className="text-xl font-bold text-agency-navy mb-4">
+                <h3 className="text-xl font-hanson font-bold text-devora-navy mb-4">
                   {item.problem}
                 </h3>
                 
                 <div className="flex items-center mb-4">
-                  <ArrowRight className="w-5 h-5 text-agency-blue mr-2" />
-                  <span className="text-agency-blue font-semibold">{item.solution}</span>
+                  <ArrowRight className="w-5 h-5 text-devora-primary mr-2" />
+                  <span className="text-devora-primary font-semibold font-roboto">{item.solution}</span>
                 </div>
                 
-                <p className="text-agency-gray">
+                <p className="text-gray-600 font-roboto">
                   {item.description}
                 </p>
               </div>
@@ -70,7 +70,7 @@ const ProblemSolutionSection = () => {
           <Button 
             size="lg"
             onClick={() => scrollToSection('portfolio')}
-            className="bg-agency-blue hover:bg-blue-600 text-white px-8 py-4"
+            className="bg-devora-primary hover:bg-blue-600 text-white px-8 py-4"
           >
             See How We Solve These
             <ArrowRight className="ml-2 w-5 h-5" />

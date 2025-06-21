@@ -38,7 +38,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-agency-navy">DevAgency</h1>
+            <h1 className="text-2xl font-hanson font-bold text-devora-navy">Devora</h1>
           </div>
 
           {/* Desktop Navigation */}
@@ -48,7 +48,7 @@ const Navbar = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-gray-700 hover:text-agency-blue px-3 py-2 text-sm font-medium transition-colors"
+                  className="text-gray-700 hover:text-devora-primary px-3 py-2 text-sm font-medium transition-colors"
                 >
                   {item.label}
                 </button>
@@ -60,7 +60,7 @@ const Navbar = () => {
           <div className="hidden md:block">
             <Button 
               onClick={() => scrollToSection('contact')}
-              className="bg-agency-blue hover:bg-blue-600"
+              className="bg-devora-primary hover:bg-blue-600"
             >
               Get Free Consultation
             </Button>
@@ -70,7 +70,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-agency-blue p-2"
+              className="text-gray-700 hover:text-devora-primary p-2"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -86,14 +86,14 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-agency-blue hover:bg-gray-50"
+                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-devora-primary hover:bg-gray-50"
               >
                 {item.label}
               </button>
             ))}
             <Button 
               onClick={() => scrollToSection('contact')}
-              className="w-full mt-4 bg-agency-blue hover:bg-blue-600"
+              className="w-full mt-4 bg-devora-primary hover:bg-blue-600"
             >
               Get Free Consultation
             </Button>

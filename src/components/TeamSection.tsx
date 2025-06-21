@@ -47,10 +47,10 @@ const TeamSection = () => {
     <section id="team" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-agency-navy mb-6">
+          <h2 className="text-4xl md:text-5xl font-hanson font-bold text-devora-navy mb-6">
             Meet the Team Behind Your Success
           </h2>
-          <p className="text-xl text-agency-gray max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-roboto">
             A passionate team of experts dedicated to bringing your vision to life
           </p>
         </div>
@@ -58,7 +58,7 @@ const TeamSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {team.map((member, index) => (
             <div key={index} className="group">
-              <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-agency-blue/20 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-devora-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                 <div className="relative mb-6">
                   <img 
                     src={member.image} 
@@ -67,26 +67,26 @@ const TeamSection = () => {
                   />
                   <a 
                     href={member.linkedin}
-                    className="absolute -bottom-2 -right-2 w-8 h-8 bg-agency-blue rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors"
+                    className="absolute -bottom-2 -right-2 w-8 h-8 bg-devora-primary rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors"
                   >
                     <Linkedin className="w-4 h-4" />
                   </a>
                 </div>
                 
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-agency-navy mb-2">
+                  <h3 className="text-xl font-hanson font-bold text-devora-navy mb-2">
                     {member.name}
                   </h3>
-                  <p className="text-agency-blue font-semibold mb-3">
+                  <p className="text-devora-primary font-semibold mb-3 font-roboto">
                     {member.role}
                   </p>
-                  <p className="text-agency-gray text-sm mb-4">
+                  <p className="text-gray-600 text-sm mb-4 font-roboto">
                     {member.bio}
                   </p>
                   
                   <div className="flex flex-wrap gap-1 justify-center">
                     {member.skills.map((skill, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-gray-100 text-xs rounded-md text-agency-gray">
+                      <span key={idx} className="px-2 py-1 bg-gray-100 text-xs rounded-md text-gray-600 font-roboto">
                         {skill}
                       </span>
                     ))}
@@ -98,19 +98,19 @@ const TeamSection = () => {
         </div>
 
         {/* Company Stats */}
-        <div className="bg-gradient-to-r from-agency-blue to-blue-600 rounded-2xl p-8 text-white text-center mb-8">
+        <div className="bg-gradient-to-r from-devora-primary to-devora-cyan rounded-2xl p-8 text-white text-center mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <div className="text-3xl font-bold mb-2">50+</div>
-              <div className="text-blue-100">Developers</div>
+              <div className="text-3xl font-hanson font-bold mb-2">50+</div>
+              <div className="text-blue-100 font-roboto">Developers</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-2">15+</div>
-              <div className="text-blue-100">Designers</div>
+              <div className="text-3xl font-hanson font-bold mb-2">15+</div>
+              <div className="text-blue-100 font-roboto">Designers</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-2">10+</div>
-              <div className="text-blue-100">Project Managers</div>
+              <div className="text-3xl font-hanson font-bold mb-2">10+</div>
+              <div className="text-blue-100 font-roboto">Project Managers</div>
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@ const TeamSection = () => {
           <Button 
             size="lg"
             onClick={() => scrollToSection('contact')}
-            className="bg-agency-blue hover:bg-blue-600 text-white px-8 py-4"
+            className="bg-devora-primary hover:bg-blue-600 text-white px-8 py-4"
           >
             Work With Us
           </Button>

@@ -43,10 +43,10 @@ const ServicesSection = () => {
     <section id="services" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-agency-navy mb-6">
+          <h2 className="text-4xl md:text-5xl font-hanson font-bold text-devora-navy mb-6">
             Our Core Services
           </h2>
-          <p className="text-xl text-agency-gray max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-roboto">
             End-to-end development solutions tailored to your needs
           </p>
         </div>
@@ -54,23 +54,23 @@ const ServicesSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {services.map((service, index) => (
             <div key={index} className="group">
-              <div className="bg-white rounded-2xl p-8 border border-gray-100 hover:border-agency-blue/20 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="flex items-center justify-center w-16 h-16 bg-agency-blue/10 rounded-full mb-6 group-hover:bg-agency-blue/20 transition-colors">
-                  <service.icon className="w-8 h-8 text-agency-blue" />
+              <div className="bg-white rounded-2xl p-8 border border-gray-100 hover:border-devora-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div className="flex items-center justify-center w-16 h-16 bg-devora-primary/10 rounded-full mb-6 group-hover:bg-devora-primary/20 transition-colors">
+                  <service.icon className="w-8 h-8 text-devora-primary" />
                 </div>
                 
-                <h3 className="text-xl font-bold text-agency-navy mb-4">
+                <h3 className="text-xl font-hanson font-bold text-devora-navy mb-4">
                   {service.title}
                 </h3>
                 
-                <p className="text-agency-gray mb-6">
+                <p className="text-gray-600 mb-6 font-roboto">
                   {service.description}
                 </p>
                 
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-agency-gray">
-                      <div className="w-1.5 h-1.5 bg-agency-blue rounded-full mr-3"></div>
+                    <li key={idx} className="flex items-center text-sm text-gray-600 font-roboto">
+                      <div className="w-1.5 h-1.5 bg-devora-primary rounded-full mr-3"></div>
                       {feature}
                     </li>
                   ))}
@@ -78,13 +78,13 @@ const ServicesSection = () => {
                 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {service.technologies.map((tech, idx) => (
-                    <span key={idx} className="px-2 py-1 bg-gray-100 text-xs rounded-md text-agency-gray">
+                    <span key={idx} className="px-2 py-1 bg-gray-100 text-xs rounded-md text-gray-600 font-roboto">
                       {tech}
                     </span>
                   ))}
                 </div>
                 
-                <Button variant="outline" className="w-full group-hover:bg-agency-blue group-hover:text-white transition-colors">
+                <Button variant="outline" className="w-full group-hover:bg-devora-primary group-hover:text-white transition-colors">
                   Learn More
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
@@ -97,7 +97,7 @@ const ServicesSection = () => {
           <Button 
             size="lg"
             onClick={() => scrollToSection('contact')}
-            className="bg-agency-blue hover:bg-blue-600 text-white px-8 py-4"
+            className="bg-devora-primary hover:bg-blue-600 text-white px-8 py-4"
           >
             Discuss Your Project
             <ArrowRight className="ml-2 w-5 h-5" />
