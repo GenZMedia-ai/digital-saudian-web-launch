@@ -99,7 +99,7 @@ const ProcessSection = () => {
                       activeStep > index ? 'bg-agency-blue' : 'bg-gray-200'
                     }`} 
                     style={{ width: 'calc(100vw / 4 - 4rem)' }}
-                  ></div>
+                  />
                 )}
               </div>
             ))}
