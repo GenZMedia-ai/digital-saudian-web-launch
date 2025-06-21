@@ -1,8 +1,11 @@
 
 import { Button } from '@/components/ui/button';
 import { TrendingDown, Wrench, Smartphone, ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ProblemSolutionSection = () => {
+  const { t, isRTL } = useLanguage();
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -11,21 +14,21 @@ const ProblemSolutionSection = () => {
   const problems = [
     {
       icon: TrendingDown,
-      problem: "Outdated Website Losing Customers",
-      solution: "Modern, conversion-focused redesigns",
-      description: "Transform your digital presence with responsive designs that convert visitors into customers"
+      problem: t('problems.problem1.title'),
+      solution: t('problems.problem1.solution'),
+      description: t('problems.problem1.description')
     },
     {
       icon: Wrench,
-      problem: "Manual Processes Slowing Growth",
-      solution: "Custom automation systems",
-      description: "Streamline operations with intelligent automation that saves time and reduces errors"
+      problem: t('problems.problem2.title'),
+      solution: t('problems.problem2.solution'),
+      description: t('problems.problem2.description')
     },
     {
       icon: Smartphone,
-      problem: "No Mobile Presence",
-      solution: "Native apps for iOS & Android",
-      description: "Reach customers wherever they are with powerful native mobile applications"
+      problem: t('problems.problem3.title'),
+      solution: t('problems.problem3.solution'),
+      description: t('problems.problem3.description')
     }
   ];
 
@@ -34,10 +37,10 @@ const ProblemSolutionSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-hanson font-bold text-devora-navy mb-6">
-            We Understand Your Challenges
+            {t('problems.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto font-roboto">
-            Every business faces unique digital challenges. We've helped hundreds of companies overcome theirs.
+            {t('problems.subtitle')}
           </p>
         </div>
 
@@ -54,7 +57,7 @@ const ProblemSolutionSection = () => {
                 </h3>
                 
                 <div className="flex items-center mb-4">
-                  <ArrowRight className="w-5 h-5 text-devora-primary mr-2" />
+                  <ArrowRight className={`w-5 h-5 text-devora-primary ${isRTL ? 'ml-2 rotate-180' : 'mr-2'}`} />
                   <span className="text-devora-primary font-semibold font-roboto">{item.solution}</span>
                 </div>
                 
@@ -72,8 +75,8 @@ const ProblemSolutionSection = () => {
             onClick={() => scrollToSection('portfolio')}
             className="bg-devora-primary hover:bg-blue-600 text-white px-8 py-4"
           >
-            See How We Solve These
-            <ArrowRight className="ml-2 w-5 h-5" />
+            {t('problems.cta')}
+            <ArrowRight className={`w-5 h-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
           </Button>
         </div>
       </div>

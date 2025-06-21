@@ -1,8 +1,11 @@
 
 import { Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const TeamSection = () => {
+  const { t, isRTL } = useLanguage();
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -48,10 +51,10 @@ const TeamSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-hanson font-bold text-devora-navy mb-6">
-            Meet the Team Behind Your Success
+            {t('team.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto font-roboto">
-            A passionate team of experts dedicated to bringing your vision to life
+            {t('team.subtitle')}
           </p>
         </div>
 
@@ -67,7 +70,7 @@ const TeamSection = () => {
                   />
                   <a 
                     href={member.linkedin}
-                    className="absolute -bottom-2 -right-2 w-8 h-8 bg-devora-primary rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors"
+                    className={`absolute -bottom-2 w-8 h-8 bg-devora-primary rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors ${isRTL ? '-left-2' : '-right-2'}`}
                   >
                     <Linkedin className="w-4 h-4" />
                   </a>
@@ -102,15 +105,15 @@ const TeamSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="text-3xl font-hanson font-bold mb-2">50+</div>
-              <div className="text-blue-100 font-roboto">Developers</div>
+              <div className="text-blue-100 font-roboto">{t('team.stats.developers')}</div>
             </div>
             <div>
               <div className="text-3xl font-hanson font-bold mb-2">15+</div>
-              <div className="text-blue-100 font-roboto">Designers</div>
+              <div className="text-blue-100 font-roboto">{t('team.stats.designers')}</div>
             </div>
             <div>
               <div className="text-3xl font-hanson font-bold mb-2">10+</div>
-              <div className="text-blue-100 font-roboto">Project Managers</div>
+              <div className="text-blue-100 font-roboto">{t('team.stats.managers')}</div>
             </div>
           </div>
         </div>
@@ -121,7 +124,7 @@ const TeamSection = () => {
             onClick={() => scrollToSection('contact')}
             className="bg-devora-primary hover:bg-blue-600 text-white px-8 py-4"
           >
-            Work With Us
+            {t('team.cta')}
           </Button>
         </div>
       </div>

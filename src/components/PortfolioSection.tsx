@@ -2,8 +2,10 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const PortfolioSection = () => {
+  const { t, isRTL } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('All');
 
   const scrollToSection = (id: string) => {
@@ -11,7 +13,13 @@ const PortfolioSection = () => {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const filters = ['All', 'E-commerce', 'SaaS', 'Mobile Apps', 'Corporate'];
+  const filters = [
+    { key: 'All', label: t('portfolio.filter.all') },
+    { key: 'E-commerce', label: t('portfolio.filter.ecommerce') },
+    { key: 'SaaS', label: t('portfolio.filter.saas') },
+    { key: 'Mobile Apps', label: t('portfolio.filter.mobile') },
+    { key: 'Corporate', label: t('portfolio.filter.corporate') }
+  ];
   
   const projects = [
     {
@@ -81,14 +89,14 @@ const PortfolioSection = () => {
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section id="portfolio" className="py-24 bg-agency-dark text-white">
+    <section id="portfolio" className="py-24 bg-devora-navy text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Our Recent Work
+          <h2 className="text-4xl md:text-5xl font-hanson font-bold mb-6">
+            {t('portfolio.title')}
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Real projects, real results
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-roboto">
+            {t('portfolio.subtitle')}
           </p>
         </div>
 
@@ -96,15 +104,15 @@ const PortfolioSection = () => {
         <div className="flex flex-wrap justify-center gap-4 mb-16">
           {filters.map((filter) => (
             <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                activeFilter === filter
-                  ? 'bg-agency-blue text-white'
+              key={filter.key}
+              onClick={() => setActiveFilter(filter.key)}
+              className={`px-6 py-3 rounded-full font-semibold transition-all font-roboto ${
+                activeFilter === filter.key
+                  ? 'bg-devora-primary text-white'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
               }`}
             >
-              {filter}
+              {filter.label}
             </button>
           ))}
         </div>
@@ -121,7 +129,7 @@ const PortfolioSection = () => {
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-4 right-4">
+                    <div className={`absolute bottom-4 ${isRTL ? 'left-4' : 'right-4'}`}>
                       <ExternalLink className="w-6 h-6 text-white" />
                     </div>
                   </div>
@@ -129,28 +137,28 @@ const PortfolioSection = () => {
                 
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="px-3 py-1 bg-agency-blue/20 text-agency-blue text-sm rounded-full">
+                    <span className="px-3 py-1 bg-devora-primary/20 text-devora-primary text-sm rounded-full font-roboto">
                       {project.category}
                     </span>
-                    <span className="text-gray-400 text-sm">{project.client}</span>
+                    <span className="text-gray-400 text-sm font-roboto">{project.client}</span>
                   </div>
                   
-                  <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                  <p className="text-gray-400 mb-4">{project.description}</p>
+                  <h3 className="text-xl font-hanson font-bold mb-3">{project.title}</h3>
+                  <p className="text-gray-400 mb-4 font-roboto">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-gray-800 text-xs rounded-md text-gray-300">
+                      <span key={idx} className="px-2 py-1 bg-gray-800 text-xs rounded-md text-gray-300 font-roboto">
                         {tech}
                       </span>
                     ))}
                   </div>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-green-400 font-semibold text-sm">{project.metrics}</span>
-                    <Button variant="ghost" size="sm" className="text-agency-blue hover:text-blue-400">
-                      View Case Study
-                      <ArrowRight className="ml-1 w-4 h-4" />
+                    <span className="text-green-400 font-semibold text-sm font-roboto">{project.metrics}</span>
+                    <Button variant="ghost" size="sm" className="text-devora-primary hover:text-blue-400">
+                      {t('portfolio.case.study')}
+                      <ArrowRight className={`w-4 h-4 ${isRTL ? 'mr-1 rotate-180' : 'ml-1'}`} />
                     </Button>
                   </div>
                 </div>
@@ -163,10 +171,10 @@ const PortfolioSection = () => {
           <Button 
             size="lg"
             onClick={() => scrollToSection('contact')}
-            className="bg-agency-blue hover:bg-blue-600 text-white px-8 py-4"
+            className="bg-devora-primary hover:bg-blue-600 text-white px-8 py-4"
           >
-            Start Your Project
-            <ArrowRight className="ml-2 w-5 h-5" />
+            {t('portfolio.cta')}
+            <ArrowRight className={`w-5 h-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
           </Button>
         </div>
       </div>

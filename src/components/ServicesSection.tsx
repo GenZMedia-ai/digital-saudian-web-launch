@@ -1,8 +1,11 @@
 
 import { Button } from '@/components/ui/button';
 import { Globe, Smartphone, Code, Palette, ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ServicesSection = () => {
+  const { t, isRTL } = useLanguage();
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -11,30 +14,30 @@ const ServicesSection = () => {
   const services = [
     {
       icon: Globe,
-      title: "Web Development",
-      description: "Build powerful, scalable web applications",
-      features: ["Custom Websites", "E-commerce Platforms", "Progressive Web Apps"],
+      title: t('services.web.title'),
+      description: t('services.web.description'),
+      features: [t('services.web.feature1'), t('services.web.feature2'), t('services.web.feature3')],
       technologies: ["React", "Next.js", "TypeScript", "Node.js"]
     },
     {
       icon: Smartphone,
-      title: "Mobile Development",
-      description: "Native and cross-platform mobile solutions",
-      features: ["iOS Native Apps", "Android Native Apps", "Cross-Platform Solutions"],
+      title: t('services.mobile.title'),
+      description: t('services.mobile.description'),
+      features: [t('services.mobile.feature1'), t('services.mobile.feature2'), t('services.mobile.feature3')],
       technologies: ["React Native", "Flutter", "Swift", "Kotlin"]
     },
     {
       icon: Code,
-      title: "Custom Software",
-      description: "Tailored solutions for your business needs",
-      features: ["Enterprise Solutions", "SaaS Development", "API Integration"],
+      title: t('services.software.title'),
+      description: t('services.software.description'),
+      features: [t('services.software.feature1'), t('services.software.feature2'), t('services.software.feature3')],
       technologies: ["Python", "Java", "AWS", "Docker"]
     },
     {
       icon: Palette,
-      title: "UI/UX Design",
-      description: "Create intuitive and beautiful user experiences",
-      features: ["User Research", "Interface Design", "Prototyping"],
+      title: t('services.design.title'),
+      description: t('services.design.description'),
+      features: [t('services.design.feature1'), t('services.design.feature2'), t('services.design.feature3')],
       technologies: ["Figma", "Adobe XD", "Sketch", "Principle"]
     }
   ];
@@ -44,10 +47,10 @@ const ServicesSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-hanson font-bold text-devora-navy mb-6">
-            Our Core Services
+            {t('services.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto font-roboto">
-            End-to-end development solutions tailored to your needs
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -70,7 +73,7 @@ const ServicesSection = () => {
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center text-sm text-gray-600 font-roboto">
-                      <div className="w-1.5 h-1.5 bg-devora-primary rounded-full mr-3"></div>
+                      <div className={`w-1.5 h-1.5 bg-devora-primary rounded-full ${isRTL ? 'ml-3' : 'mr-3'}`}></div>
                       {feature}
                     </li>
                   ))}
@@ -85,8 +88,8 @@ const ServicesSection = () => {
                 </div>
                 
                 <Button variant="outline" className="w-full group-hover:bg-devora-primary group-hover:text-white transition-colors">
-                  Learn More
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                  {t('services.learn.more')}
+                  <ArrowRight className={`w-4 h-4 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
                 </Button>
               </div>
             </div>
@@ -99,8 +102,8 @@ const ServicesSection = () => {
             onClick={() => scrollToSection('contact')}
             className="bg-devora-primary hover:bg-blue-600 text-white px-8 py-4"
           >
-            Discuss Your Project
-            <ArrowRight className="ml-2 w-5 h-5" />
+            {t('services.cta')}
+            <ArrowRight className={`w-5 h-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
           </Button>
         </div>
       </div>
