@@ -2,13 +2,10 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
-import LanguageToggle from '@/components/LanguageToggle';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { t, isRTL } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,12 +22,12 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { label: t('nav.about'), id: 'about' },
-    { label: t('nav.services'), id: 'services' },
-    { label: t('nav.portfolio'), id: 'portfolio' },
-    { label: t('nav.process'), id: 'process' },
-    { label: t('nav.team'), id: 'team' },
-    { label: t('nav.contact'), id: 'contact' }
+    { label: 'About', id: 'about' },
+    { label: 'Services', id: 'services' },
+    { label: 'Portfolio', id: 'portfolio' },
+    { label: 'Process', id: 'process' },
+    { label: 'Team', id: 'team' },
+    { label: 'Contact', id: 'contact' }
   ];
 
   return (
@@ -38,20 +35,20 @@ const Navbar = () => {
       isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex justify-between items-center h-16 ${isRTL ? 'flex-row-reverse' : ''}`}>
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-brand-navy font-heading">{t('nav.logo')}</h1>
+            <h1 className="text-2xl font-bold text-agency-navy">DevAgency</h1>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className={`ml-10 flex items-baseline space-x-8 ${isRTL ? 'space-x-reverse' : ''}`}>
+            <div className="ml-10 flex items-baseline space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-gray-700 hover:text-brand-primary px-3 py-2 text-sm font-medium transition-colors"
+                  className="text-gray-700 hover:text-agency-blue px-3 py-2 text-sm font-medium transition-colors"
                 >
                   {item.label}
                 </button>
@@ -59,14 +56,13 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Language Toggle & CTA Button */}
-          <div className={`hidden md:flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <LanguageToggle />
+          {/* CTA Button */}
+          <div className="hidden md:block">
             <Button 
               onClick={() => scrollToSection('contact')}
-              className="bg-brand-primary hover:bg-blue-600"
+              className="bg-agency-blue hover:bg-blue-600"
             >
-              {t('nav.cta')}
+              Get Free Consultation
             </Button>
           </div>
 
@@ -74,7 +70,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-brand-primary p-2"
+              className="text-gray-700 hover:text-agency-blue p-2"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -90,20 +86,17 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50"
+                className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-agency-blue hover:bg-gray-50"
               >
                 {item.label}
               </button>
             ))}
-            <div className="flex flex-col gap-2 px-3 pt-4">
-              <LanguageToggle />
-              <Button 
-                onClick={() => scrollToSection('contact')}
-                className="w-full bg-brand-primary hover:bg-blue-600"
-              >
-                {t('nav.cta')}
-              </Button>
-            </div>
+            <Button 
+              onClick={() => scrollToSection('contact')}
+              className="w-full mt-4 bg-agency-blue hover:bg-blue-600"
+            >
+              Get Free Consultation
+            </Button>
           </div>
         </div>
       )}
