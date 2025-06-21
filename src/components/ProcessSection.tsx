@@ -72,66 +72,76 @@ const ProcessSection = () => {
           </p>
         </div>
 
-        {/* Timeline */}
         <div className="relative mb-16">
-          {/* Desktop Timeline */}
           <div className="hidden md:flex items-center justify-between mb-8">
-            {steps.map((step, index) => (
-              <div key={index} className="flex flex-col items-center relative">
-                <button
-                  onClick={() => setActiveStep(index)}
-                  className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all ${
-                    activeStep === index
-                      ? 'bg-agency-blue text-white scale-110'
-                      : 'bg-white border-2 border-gray-200 text-gray-400 hover:border-agency-blue hover:text-agency-blue'
-                  }`}
-                >
-                  <step.icon className="w-8 h-8" />
-                </button>
-                <span className={`text-sm font-semibold ${
-                  activeStep === index ? 'text-agency-blue' : 'text-gray-400'
-                }`}>
-                  {step.timeframe}
-                </span>
-                {index < steps.length - 1 && (
-                  <div 
-                    className={`absolute top-8 left-full w-full h-0.5 ${
-                      activeStep > index ? 'bg-agency-blue' : 'bg-gray-200'
-                    }`} 
-                    style={{ width: 'calc(100vw / 4 - 4rem)' }}
-                  />
-                )}
-              </div>
-            ))}
+            {steps.map((step, index) => {
+              const IconComponent = step.icon;
+              const isActive = activeStep === index;
+              const isCompleted = activeStep > index;
+              
+              return (
+                <div key={index} className="flex flex-col items-center relative">
+                  <button
+                    onClick={() => setActiveStep(index)}
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all ${
+                      isActive
+                        ? 'bg-agency-blue text-white scale-110'
+                        : 'bg-white border-2 border-gray-200 text-gray-400 hover:border-agency-blue hover:text-agency-blue'
+                    }`}
+                  >
+                    <IconComponent className="w-8 h-8" />
+                  </button>
+                  <span className={`text-sm font-semibold ${
+                    isActive ? 'text-agency-blue' : 'text-gray-400'
+                  }`}>
+                    {step.timeframe}
+                  </span>
+                  {index < steps.length - 1 && (
+                    <div 
+                      className={`absolute top-8 left-full w-full h-0.5 ${
+                        isCompleted ? 'bg-agency-blue' : 'bg-gray-200'
+                      }`} 
+                      style={{ width: 'calc(100vw / 4 - 4rem)' }}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
 
-          {/* Mobile Timeline */}
           <div className="md:hidden space-y-4 mb-8">
-            {steps.map((step, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveStep(index)}
-                className={`w-full flex items-center p-4 rounded-lg transition-all ${
-                  activeStep === index
-                    ? 'bg-agency-blue text-white'
-                    : 'bg-white border border-gray-200 hover:border-agency-blue'
-                }`}
-              >
-                <step.icon className="w-8 h-8 mr-4" />
-                <div className="text-left">
-                  <h3 className="font-semibold">{step.title}</h3>
-                  <span className="text-sm opacity-75">{step.timeframe}</span>
-                </div>
-              </button>
-            ))}
+            {steps.map((step, index) => {
+              const IconComponent = step.icon;
+              const isActive = activeStep === index;
+              
+              return (
+                <button
+                  key={index}
+                  onClick={() => setActiveStep(index)}
+                  className={`w-full flex items-center p-4 rounded-lg transition-all ${
+                    isActive
+                      ? 'bg-agency-blue text-white'
+                      : 'bg-white border border-gray-200 hover:border-agency-blue'
+                  }`}
+                >
+                  <IconComponent className="w-8 h-8 mr-4" />
+                  <div className="text-left">
+                    <h3 className="font-semibold">{step.title}</h3>
+                    <span className="text-sm opacity-75">{step.timeframe}</span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Active Step Details */}
         <div className="bg-white rounded-2xl p-8 shadow-lg">
           <div className="flex items-center mb-6">
             <div className="w-12 h-12 bg-agency-blue/10 rounded-full flex items-center justify-center mr-4">
-              {steps[activeStep] && <steps[activeStep].icon className="w-6 h-6 text-agency-blue" />}
+              {steps[activeStep] && (() => {
+                const IconComponent = steps[activeStep].icon;
+                return <IconComponent className="w-6 h-6 text-agency-blue" />;
+              })()}
             </div>
             <div>
               <h3 className="text-2xl font-bold text-agency-navy">
