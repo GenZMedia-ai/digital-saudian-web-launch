@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,9 +5,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Phone, Mail, MapPin, Clock, Linkedin, Github } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
 const ContactSection = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,16 +18,13 @@ const ContactSection = () => {
     budget: '',
     message: ''
   });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    
     toast({
       title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
+      description: "We'll get back to you within 24 hours."
     });
-    
     setFormData({
       name: '',
       email: '',
@@ -38,16 +35,16 @@ const ContactSection = () => {
       message: ''
     });
   };
-
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
-
-  return (
-    <section id="contact" className="py-24 bg-agency-dark text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  return <section id="contact" className="py-24 bg-agency-dark text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-900">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 py-[20px]">
             Let's Build Something Amazing Together
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -62,52 +59,29 @@ const ContactSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium mb-2">Name *</label>
-                  <Input
-                    required
-                    value={formData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
-                    className="bg-gray-800 border-gray-700 text-white"
-                    placeholder="Your name"
-                  />
+                  <Input required value={formData.name} onChange={e => handleInputChange('name', e.target.value)} placeholder="Your name" className="border-gray-700 text-white bg-slate-700" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Email *</label>
-                  <Input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    className="bg-gray-800 border-gray-700 text-white"
-                    placeholder="your@email.com"
-                  />
+                  <Input type="email" required value={formData.email} onChange={e => handleInputChange('email', e.target.value)} placeholder="your@email.com" className="border-gray-700 text-white bg-gray-700" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium mb-2">Phone</label>
-                  <Input
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange('phone', e.target.value)}
-                    className="bg-gray-800 border-gray-700 text-white"
-                    placeholder="+1 (555) 123-4567"
-                  />
+                  <Input value={formData.phone} onChange={e => handleInputChange('phone', e.target.value)} placeholder="+1 (555) 123-4567" className="border-gray-700 text-white bg-gray-700" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Company</label>
-                  <Input
-                    value={formData.company}
-                    onChange={(e) => handleInputChange('company', e.target.value)}
-                    className="bg-gray-800 border-gray-700 text-white"
-                    placeholder="Your company"
-                  />
+                  <Input value={formData.company} onChange={e => handleInputChange('company', e.target.value)} placeholder="Your company" className="border-gray-700 text-white bg-gray-700" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
+                <div className="">
                   <label className="block text-sm font-medium mb-2">Project Type</label>
-                  <Select onValueChange={(value) => handleInputChange('projectType', value)}>
+                  <Select onValueChange={value => handleInputChange('projectType', value)}>
                     <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
                       <SelectValue placeholder="Select project type" />
                     </SelectTrigger>
@@ -122,7 +96,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Budget Range</label>
-                  <Select onValueChange={(value) => handleInputChange('budget', value)}>
+                  <Select onValueChange={value => handleInputChange('budget', value)}>
                     <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
                       <SelectValue placeholder="Select budget range" />
                     </SelectTrigger>
@@ -138,20 +112,10 @@ const ContactSection = () => {
 
               <div>
                 <label className="block text-sm font-medium mb-2">Message *</label>
-                <Textarea
-                  required
-                  value={formData.message}
-                  onChange={(e) => handleInputChange('message', e.target.value)}
-                  className="bg-gray-800 border-gray-700 text-white min-h-[120px]"
-                  placeholder="Tell us about your project..."
-                />
+                <Textarea required value={formData.message} onChange={e => handleInputChange('message', e.target.value)} placeholder="Tell us about your project..." className="border-gray-700 text-white min-h-[120px] bg-gray-700" />
               </div>
 
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full bg-agency-blue hover:bg-blue-600 text-white py-4 text-lg font-semibold"
-              >
+              <Button type="submit" size="lg" className="w-full bg-agency-blue hover:bg-blue-600 text-white py-4 text-lg font-semibold">
                 Send Message
               </Button>
             </form>
@@ -223,8 +187,6 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ContactSection;
